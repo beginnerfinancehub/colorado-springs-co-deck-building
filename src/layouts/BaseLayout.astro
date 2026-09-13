@@ -59,5 +59,9 @@ const titleTag = fullTitle.length <= 60 ? fullTitle : title;
       <slot />
     </main>
     <Footer />
+    <!-- Cloudflare Web Analytics: own token, added as a distinct site
+         (coloradospringsdeckbuilding.com) in Cloudflare Web Analytics
+         2026-09-13 during C4. Not shared with Omaha, Abilene, or Springfield. -->
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "820d64bd56db4342869b69204bdb7877"}'></script>
   </body>
 </html>
