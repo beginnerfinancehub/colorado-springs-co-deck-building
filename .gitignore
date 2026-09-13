@@ -23,3 +23,5 @@ Thumbs.db
 # repo to site code only. Both stay on disk in this build folder.
 build-spec.md
 design-export/
+receipt-*.md
+.claude/
