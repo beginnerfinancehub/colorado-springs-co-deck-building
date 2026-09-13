@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../lib/site.js';
+
+const buildPoints = [
+  { t: 'Engineered framing', d: 'Beam, joist, and post sizing matched to the span and snow load a Front Range deck actually carries.' },
+  { t: 'Correct ledger attachment', d: 'A 2x8 minimum, pressure-preservative-treated No. 2 grade ledger, never bolted to a cantilevered floor, brick veneer, or a manufactured home without a Colorado-licensed design professional’s stamp.' },
+  { t: 'Code-correct guards & stairs', d: 'Guardrails and stair geometry built to PPRBD’s exact numbers, not a rough approximation.' },
+];
+
+const permitSteps = [
+  { t: 'Site/plot plan review', d: 'A site or plot plan review is required for every deck plan; we confirm jurisdiction (Colorado Springs, El Paso County, or Fountain/Manitou Springs/Monument/Woodland Park) before filing.' },
+  { t: 'Drawings & application', d: 'We prepare the deck plan and structural details PPRBD needs, including any composite decking’s ICC evaluation report.' },
+  { t: 'PPRBD submittal & review', d: 'We file the application and answer any plan-review comments; review time depends on the deck’s complexity (see our cost page for typical timelines).' },
+  { t: 'Footing & framing inspections', d: 'Every permitted deck gets two inspections: footing depth checked before concrete is poured, framing checked before decking boards go down.' },
+];
+
+const faqItems = [
+  { q: 'Do I need a permit to build a deck in Colorado Springs?', a: 'In most cases yes. A deck skips a permit only if it clears every one of: detached from the house, 200 square feet or smaller, no point more than 30 inches above grade within 36 inches of the walking-surface edge, and not serving the main entry door. Any deck attached to the house needs a permit regardless of size.' },
+  { q: 'Do you need a permit for a pergola over your deck?', a: "It depends on size and whether it sits over a deck. A detached pergola under 200 square feet that is not built over a deck is permit-exempt. A pergola built over a deck needs a permit at any size. Either way, the roof structure must stay at least 50 percent open with no roof openings wider than 4 inches (PPRBD's own pergola guidance)." },
+  { q: 'How long does the PPRBD permit take?', a: 'Timelines vary with PPRBD’s review queue and the deck’s complexity; see our cost page for the typical range. A complete, correct submittal up front avoids the back-and-forth that slows approval.' },
+  { q: 'What are the deck building codes in Colorado Springs?', a: 'Decks follow the adopted IRC as PPRBD enforces it: footings below the 30-inch frost line, a guardrail on any deck over 30 inches above grade (36-inch minimum height, 4-inch maximum baluster spacing), stair rise/run and handrail rules, correct ledger attachment, and Appendix K ignition-resistant materials in mapped WUI zones.' },
+];
+---
+<BaseLayout
+  title="New Deck Construction & Permits, Colorado Springs"
+  description="Do you need a permit to build a deck in Colorado Springs? PPRBD's rules on permits, guardrails, footings, and pergolas, explained before you build."
+  extraServices={['New deck construction', 'Deck permit filing and inspections']}
+>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Home / New decks &amp; permits</p>
+        <h1>New deck construction &amp; permits</h1>
+        <p class="lede">Ground-up decks engineered for Front Range soil, frost, and wind, with the PPRBD permit filed and inspections managed. Here is exactly how permitting works in Colorado Springs and where a permit is required.</p>
+      </div>
+      <HeroLeadForm />
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">New construction</p>
+      <h2>Built for the ground it stands on</h2>
+      <p class="lead-out">A Colorado Springs deck has to be engineered for local soil, frost depth, and snow load, not a generic national spec. The three build points below are where a cheaper crew most often cuts a corner that shows up years later.</p>
+      <ul class="card-grid cols-3">
+        {buildPoints.map((b) => (
+          <li class="card"><h3>{b.t}</h3><p>{b.d}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">The permitting authority</p>
+      <h2>PPRBD is the sole permit office</h2>
+      <p class="lead-out">Colorado has no statewide contractor license; the Pikes Peak Regional Building Department (PPRBD), 2880 International Cr., Colorado Springs (719-327-2880), issues and inspects every deck permit across the city and El Paso County. Most attached decks, and decks above a set height off grade, require a permit and one or more inspections.</p>
+      <ol class="steps">
+        {permitSteps.map((p) => (
+          <li><b>{p.t}</b>{p.d}</li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <ul class="facts" style="margin-bottom:0;">
+        <li><b>Site plan review applies to every deck</b>A site or plot plan review is required for ALL deck plans, and the right zoning desk depends on jurisdiction: Colorado Springs (719-385-5982), El Paso County (719-520-6300), or Fountain, Manitou Springs, Monument, and Woodland Park's own zoning lines.<cite>PPRBD, Residential Deck Plan Review packet</cite></li>
+        <li><b>Guardrail rule above 30 inches</b>Any deck more than 30 inches above grade needs a guardrail: 36-inch minimum height, 4-inch maximum baluster spacing.<cite>PPRBD, Residential Deck Plan Review packet</cite></li>
+        <li><b>Stair geometry is code-specific</b>PPRBD requires a 7&frac34;-inch maximum rise, 10-inch minimum run, and 36-inch minimum stair width; a handrail (1&frac14;-2 inch grip) is required for 4 or more risers, set 34-38 inches above the tread nosing.<cite>PPRBD, Residential Deck Plan Review packet</cite></li>
+        <li><b>The ledger board has its own rule</b>The ledger, which bolts the deck to the house, must be a 2x8 minimum, pressure-preservative-treated No. 2 grade, and may not attach to a cantilevered floor, brick veneer, or a manufactured home without a Colorado-licensed design professional's stamp.<cite>PPRBD, Residential Deck Plan Review packet</cite></li>
+        <li><b>Every permitted deck gets two inspections</b>A footing inspection before concrete is poured, and a framing inspection before decking boards go down.<cite>PPRBD packet; The Colorado Handyman (Jul 2026)</cite></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk" id="pergola">
+    <div class="wrap">
+      <div class="qa-callout">
+        <p class="eyebrow">Common question</p>
+        <h2>Do you need a permit for a pergola over your deck in Colorado Springs?</h2>
+        <p>A detached pergola under 200 square feet that is not built over a deck is permit-exempt. A pergola built over a deck needs a permit at any size, since it is a separate structural element with its own dead load and wind-uplift requirements. Either way, the roof structure must stay at least 50 percent open, and no roof opening may be wider than 4 inches.</p>
+        <p style="margin-bottom:0;">Confirm your specific structure before you build; we check it against PPRBD's current pergola guidance and include any needed permit in the same submittal, so nothing gets red-tagged later. <cite style="display:block;font-size:.8rem;color:#9d978c;margin-top:.5rem;">PPRBD pergola handout, pprbd.org/File/ByAlias/Pergola</cite></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="codes">
+        <div class="codes-body">
+          <p class="eyebrow">Codes &amp; compliance</p>
+          <h2>Every deck to the adopted IRC, as PPRBD enforces it.</h2>
+          <p>Footings below the 30-inch frost line, guard and stair geometry, ledger attachment, and Appendix K ignition-resistant materials in WUI zones. We build to pass inspection the first time.</p>
+          <p><a href="/deck-building-cost/">See what a deck costs &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sunk" id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Permit questions</p>
+      <h2>Permits &amp; codes FAQ</h2>
+      <Faq items={faqItems} />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Get started</p>
+      <h2>Planning a new deck? Start with the permit handled.</h2>
+      <p class="lead-out">Same business day reply. No obligation.</p>
+      <p><a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      <a class="btn btn-quiet" href="/contact/">Get a free quote</a></p>
+    </div>
+  </section>
+</BaseLayout>

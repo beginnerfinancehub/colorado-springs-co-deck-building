@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../lib/site.js';
+
+const compare = [
+  { name: 'Pressure-Treated Pine', uv: 'Low, needs regular sealing', maint: 'High', life: '10-15 yrs' },
+  { name: 'Cedar', uv: 'Moderate', maint: 'Medium-high', life: '12-18 yrs' },
+  { name: 'Mid-Tier Composite', uv: 'High', maint: 'Low', life: '25-30 yrs' },
+  { name: 'Premium Composite', uv: 'Very high', maint: 'Very low', life: '30-50 yrs' },
+];
+
+const faqItems = [
+  { q: 'Is composite worth it in Colorado Springs?', a: 'Often yes. Framing still has to meet the same 43 psf ground snow load either way, but capped composite resists the UV and freeze-thaw stress that ages wood decking here fastest, and several lines add heat-reflective "cool-touch" technology for bare feet under high-altitude sun.' },
+  { q: 'Does composite decking need a special code review?', a: "Yes. Composite and plastic decking must carry an ICC evaluation report, and PPRBD reviews that report at plan check, installed per the report and the manufacturer's instructions. It is a real code step a generic material comparison skips." },
+  { q: 'Why do footings matter for material choice?', a: 'Footings are dug below El Paso County’s 30-inch frost line regardless of what decking material sits on top, and PPRBD inspects footing depth before concrete is poured. Any framing member touching soil must carry the higher UC4A ground-contact pressure-treatment rating, not the lighter UC3 above-ground rating.' },
+  { q: 'Does snow load affect which material I can use?', a: 'Snow load affects framing spans more than surface material: sites below 7,000 feet in the PPRBD jurisdiction carry a 43 psf ground snow load, and framing has to be sized to carry it regardless of whether the decking on top is wood or composite.' },
+];
+---
+<BaseLayout
+  title="Composite vs. Wood Decking for Colorado Springs"
+  description="How pressure-treated pine, cedar, and composite decking hold up to Colorado Springs' altitude, UV, and freeze-thaw cycles, and which lasts longest."
+  extraServices={['Composite decking installation', 'Wood decking installation']}
+>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Home / Materials</p>
+        <h1>Composite &amp; wood decking for Colorado's climate</h1>
+        <p class="lede">High-altitude UV, 100-plus freeze-thaw cycles, and heavy dry snow are hard on decking. The right material is the one that survives your exposure and clears the same frost-depth and snow-load rules every deck here has to meet.</p>
+      </div>
+      <HeroLeadForm />
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Why material choice matters here</p>
+      <h2>What Colorado does to a deck's foundation, regardless of material</h2>
+      <p class="lead-out">Before wood-versus-composite even comes up, every Colorado Springs deck has to clear the same structural rules: footings below the frost line, framing sized for the local snow load, and the right pressure-treatment grade anywhere lumber touches soil. Material choice changes the surface; these three don't change at all.</p>
+      <ul class="facts">
+        <li><b>Footings must clear the 30-inch frost line</b>El Paso County's frost line is 30 inches; footings must be poured below it or they heave and crack over a few winters, regardless of what decking sits on top.<cite>PPRBD design criteria, via PPRBC 2023 technical code ch. 3; The Colorado Handyman (Jul 2026)</cite></li>
+        <li><b>PPRBD inspects footing depth before the pour</b>A footing inspection happens before concrete is poured, so the frost-depth rule is checked, not just assumed, on every permitted deck.<cite>PPRBD, Residential Deck Plan Review packet</cite></li>
+        <li><b>Framing has to be sized for a real local snow load</b>Ground snow load for sites below 7,000 ft in the PPRBD jurisdiction runs 43 psf (30 psf for a flat-roof structure), and deck framing spans must be sized to carry it, whatever material tops the frame.<cite>PPRBD / PPRBC 2023 technical code ch. 3 design criteria</cite></li>
+        <li><b>Ground-contact lumber needs the higher UC4A rating</b>Any framing member touching soil must be UC4A ground-contact-rated pressure-treated lumber, not the lighter UC3 above-ground rating, a durability point PPRBD's inspection effectively enforces.<cite>The Colorado Handyman (Jul 2026); AWPA use-category standard</cite></li>
+        <li><b>Composite decking needs its own code review</b>Composite and plastic decking must carry an ICC evaluation report and be installed per that report and the manufacturer's instructions; PPRBD reviews the report at plan check, a code step a generic comparison skips.<cite>PPRBD, Residential Deck Plan Review packet</cite></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk" id="compare">
+    <div class="wrap">
+      <p class="eyebrow">Side by side, for Colorado exposure</p>
+      <h2>Which material actually holds up here?</h2>
+      <p class="lead-out">Pressure-treated pine costs the least up front but needs the most upkeep against altitude UV and freeze-thaw; premium composite costs the most but needs almost none. The table below lines up UV resistance, maintenance, and lifespan across all four so you can weigh the trade honestly, tied to the cost-page pricing for each tier.</p>
+      <div style="overflow-x:auto;">
+        <table class="compare" style="min-width:34rem;">
+          <thead><tr><th>Material</th><th>UV / fade resistance</th><th>Maintenance</th><th>Lifespan (CO)</th></tr></thead>
+          <tbody>
+            {compare.map((r) => (
+              <tr><td>{r.name}</td><td>{r.uv}</td><td>{r.maint}</td><td>{r.life}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:.85rem;color:#6A6157;margin-top:.75rem;">General guidance for Front Range exposure; your site's sun, shade, and elevation change the real-world result. See our <a href="/deck-building-cost/">cost page</a> for the per-square-foot pricing behind each tier.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="codes">
+        <div class="codes-body">
+          <p class="eyebrow">Material meets code</p>
+          <h2>In a WUI zone, the material has to be ignition-resistant.</h2>
+          <p>If your lot sits in the wildland-urban interface, decking and framing must meet Appendix K. That narrows the material list before cost or looks even enter the conversation.</p>
+          <p><a href="/fire-resistant-wui-decks/">See fire-resistant decks &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sunk" id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Material questions</p>
+      <h2>Decking material FAQ</h2>
+      <Faq items={faqItems} />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Get matched to your lot</p>
+      <h2>Not sure which material fits your lot?</h2>
+      <p class="lead-out">We'll match it to your sun, snow, and budget. Same business day reply.</p>
+      <p><a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      <a class="btn btn-quiet" href="/contact/">Get a free quote</a></p>
+    </div>
+  </section>
+</BaseLayout>

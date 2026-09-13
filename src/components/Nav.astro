@@ -1,0 +1,27 @@
+---
+import { SITE } from '../lib/site.js';
+const path = Astro.url.pathname;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/deck-building-cost/', label: 'Cost' },
+  { href: '/new-deck-construction-and-permits/', label: 'New Decks' },
+  { href: '/composite-and-wood-decking/', label: 'Materials' },
+  { href: '/fire-resistant-wui-decks/', label: 'Fire / WUI' },
+  { href: '/deck-repair-and-replacement/', label: 'Repair' },
+  { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
+];
+---
+<header class="masthead">
+  <div class="wrap">
+    <a class="wordmark brand-mark" href="/"><img src="/favicon.svg" alt="" width="36" height="36" />Colorado Springs<span>Deck Building</span></a>
+    <a class="masthead-call" href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
+  </div>
+</header>
+<nav class="nav" aria-label="Primary">
+  <ul>
+    {links.map((l) => (
+      <li><a href={l.href} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a></li>
+    ))}
+  </ul>
+</nav>

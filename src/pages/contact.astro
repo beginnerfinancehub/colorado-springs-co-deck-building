@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import { SITE } from '../lib/site.js';
+---
+<BaseLayout
+  title="Contact Us"
+  description="Get a free deck-building quote in Colorado Springs. Send your project details and hear back the same business day."
+>
+  <div class="hero no-caller">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1>Let's talk about your deck</h1>
+        <p class="lede">Call for the fastest answer, or send the form and hear back the same business day with next steps.</p>
+        <a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="split-2">
+        <HeroLeadForm />
+        <div class="panel panel-light">
+          <h3>Call or text</h3>
+          <p><a href={SITE.phoneHref} style="font-family:var(--font-display);font-weight:700;font-size:1.5rem;color:var(--brand-deep);">{SITE.phoneDisplay}</a></p>
+          <h3 style="margin-top:1.1rem;">Hours</h3>
+          <p>{SITE.hours}</p>
+          <h3 style="margin-top:1.1rem;">Service area</h3>
+          <p style="margin-bottom:0;">Colorado Springs and the Pikes Peak / El Paso County region</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">Where we build</p>
+      <h2>Serving Colorado Springs and El Paso County</h2>
+      <ul class="chips">
+        {SITE.areaServed.map((a) => (<li>{a}</li>))}
+        <li>El Paso County</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="plain">
+        <p style="margin-bottom:0;">What you send goes straight to us, and we use it to follow up about your project and connect you with the local deck builder who does the work. We don't sell it to third-party lead brokers or use it for unrelated marketing. Full details on our <a href="/privacy/">Privacy &amp; Terms</a> page.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

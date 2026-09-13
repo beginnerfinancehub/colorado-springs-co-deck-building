@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import { SITE } from '../lib/site.js';
+
+const values = [
+  { t: 'Clear numbers first', d: 'An itemized written quote with material, permit, and labor broken out, not a vague ballpark.' },
+  { t: 'Permits, handled', d: 'The PPRBD submittal, plan-review answers, and every inspection scheduled for you.' },
+  { t: 'Built for the climate', d: 'Frost-depth footings and UV- and freeze-thaw-appropriate materials on every deck.' },
+  { t: 'WUI-aware by default', d: "Your fire zone checked and Appendix K materials specified when your lot requires them." },
+  { t: 'No surprise invoices', d: 'The number quoted is the number built to, barring changes you approve in writing.' },
+  { t: 'Straight answers', d: 'If a repair beats a replacement, or a cheaper material fits, that gets said plainly.' },
+];
+---
+<BaseLayout
+  title="About Us"
+  description="Who connects Colorado Springs homeowners with local, PPRBD-savvy deck builders, and how the referral works."
+>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">About this site</p>
+        <h1>The deck resource that explains the hard parts</h1>
+        <p class="lede">Cost, permits, and altitude and fire-code durability are exactly where most Colorado Springs homeowners get surprised. This site exists to be clear about all three before you sign, not after the invoice.</p>
+        <a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      </div>
+      <HeroLeadForm />
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">What this is</p>
+      <h2>Local competence, laid out plainly</h2>
+      <p class="lead-out">This site connects Colorado Springs homeowners with a local deck builder, and answers the questions a homeowner here actually has first: what a deck costs by material, how PPRBD permitting works, and what the WUI wildfire code requires, before any conversation about hiring anyone. Anyone can screw down boards; building a deck that survives the Front Range and passes PPRBD takes knowing the frost line, the freeze-thaw math, the WUI rules, and the code details a cheaper crew skips. That knowledge is on this site on purpose.</p>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">How we work</p>
+      <h2>What you can expect</h2>
+      <ul class="card-grid cols-3">
+        {values.map((v) => (
+          <li class="card card-accent"><h3>{v.t}</h3><p>{v.d}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Where we work</p>
+      <h2>Serving the Pikes Peak region</h2>
+      <p class="lead-out">Colorado Springs and El Paso County, including the foothill and WUI neighborhoods where getting the deck right matters most.</p>
+      <ul class="chips">
+        {SITE.areaServed.map((a) => (<li>{a}</li>))}
+        <li>El Paso County</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <div class="plain-accent">
+        <p class="eyebrow">A straight note</p>
+        <p>This page is intentionally free of invented reviews, ratings, and year counts. The real operator's licensing, insurance, and track record go here once a tenant is in place. We would rather show you nothing than show you something made up.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="codes">
+        <div class="codes-body">
+          <p class="eyebrow">Built to code, every time</p>
+          <h2>Compliance is the baseline of how this works.</h2>
+          <p>PPRBD permits, frost-depth footings, and WUI-ready materials are standard on every referred project. It is the difference between a deck that lasts and a deck that gets red-tagged.</p>
+          <p><a href="/contact/">Get your free quote &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

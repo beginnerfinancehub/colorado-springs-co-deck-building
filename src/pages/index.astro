@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import FactRail from '../components/FactRail.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../lib/site.js';
+
+const factRailItems = [
+  { k: '6,035 ft', v: 'Colorado Springs base elevation' },
+  { k: '100+ / yr', v: 'Freeze-thaw cycles at altitude' },
+  { k: '30"', v: 'Frost line, footings dug below it' },
+  { k: 'PPRBD', v: 'Sole permitting authority, city + county' },
+  { k: 'WUI / App. K', v: 'Ignition-resistant decking zones' },
+];
+
+const services = [
+  { href: '/deck-building-cost/', title: 'Deck building cost', sub: 'Four material tiers, real per-square-foot ranges, sourced and dated' },
+  { href: '/new-deck-construction-and-permits/', title: 'New deck construction & permits', sub: 'Engineered for Front Range soil and frost, PPRBD permit handled' },
+  { href: '/composite-and-wood-decking/', title: 'Composite & wood decking', sub: 'Which material actually survives Colorado altitude and freeze-thaw' },
+  { href: '/fire-resistant-wui-decks/', title: 'Fire-resistant / WUI decks', sub: 'Appendix K ignition-resistant assemblies for wildfire-hazard lots' },
+  { href: '/deck-repair-and-replacement/', title: 'Deck repair & replacement', sub: 'Re-decking, structural repair, and full tear-off rebuilds' },
+];
+
+const factItems = [
+  { b: 'High-altitude UV ages a deck fast', body: "Colorado Springs sits at roughly 6,035 feet, where UV intensity runs about 25 to 40 percent stronger than at sea level. Stains and film finishes break down faster here, so wood decking typically needs re-staining every 2 to 3 years rather than the 4 to 5 years printed on the can.", cite: 'The Colorado Handyman, "Deck Builders in Colorado Springs" (Jul 2026); All Custom Deck' },
+  { b: '100+ freeze-thaw cycles a year', body: 'The Front Range sees more than 100 freeze-thaw cycles annually, with daily swings in winter. That is what cracks under-built footings (frost heave) and stresses deck surfaces over time, a real local structural load, not a generic weather note.', cite: 'The Colorado Handyman (Jul 2026); All Custom Deck, /best-deck-material-for-colorado' },
+  { b: 'Hail and heavy wet spring snow', body: 'Hail season plus wet, heavy spring snow are specific local deck stressors that a national-average build spec is not designed for. Framing, fasteners, and decking all see loads a Dallas or Phoenix build never has to plan for.', cite: 'All Custom Deck; The Colorado Handyman (Jul 2026)' },
+  { b: 'Capped composite is built for this sun', body: 'Capped composite (Trex, TimberTech) holds color and sheds melting snow because a protective shell wraps the wood-plastic core. Several lines add "cool-touch" heat-reflective technology, which matters for bare feet under high-altitude sun.', cite: 'All Custom Deck; StoneCroft Construction, /decking (TimberTech Cool Touch)' },
+  { b: 'The map pack shows a mature, active market', body: 'The live Colorado Springs deck map pack shows established local shops: New Creation Decks (4.9 stars, 95 reviews, 25+ yrs), Quality Decks Colorado Springs (4.9, 99 reviews, 7+ yrs), All Custom Deck (5.0, 57 reviews, 30+ yrs), and Colorado Springs Deck Builder (5.0, 30 reviews, 25+ yrs).', cite: 'Google SERP via DataForSEO, 2026-09-12' },
+  { b: "It's a deep market, not a thin one", body: 'Houzz alone lists 127 Colorado Springs deck builders and contractors, a genuinely deep, mature local market rather than a handful of operators.', cite: 'Houzz Colorado Springs deck-builders directory' },
+  { b: 'One local builder went steel-only in 2019', body: 'StoneCroft Construction stopped installing wood-framed decks entirely in June 2019 and now builds steel-framed decks only, a real, unusual local market position built directly around the shrink-and-warp problems wood has at this altitude.', cite: 'StoneCroft Construction, /why-steel + /decking' },
+  { b: 'PPRBD is the only permitting authority here', body: 'The Pikes Peak Regional Building Department (PPRBD), 2880 International Cr., Colorado Springs (719-327-2880), is the sole permitting and inspecting authority for decks across the city and El Paso County.', cite: 'PPRBD, Residential Deck Plan Review packet + pprbd.org' },
+  { b: 'Colorado has no statewide contractor license', body: 'Colorado is a home-rule state under Article XX of its Constitution, so contractor licensing is a local-government function, not a statewide one. PPRBD’s own local licensing category (Contractor E, Maintenance and Remodeling) is what actually governs who can build a deck here.', cite: 'Colorado Constitution, Article XX; legal-risk-scan-2026-07-24.md §3f' },
+  { b: 'Real local questions drive this site', body: 'The FAQ on every page here is built from actual Colorado Springs deck questions people search for right now: permit requirements, real cost ranges, and what a 12x24 deck should run, not invented copy.', cite: 'Google "People Also Ask", via DataForSEO, 2026-09-12' },
+  { b: 'HOA design review often comes before the permit', body: "Newer Colorado Springs subdivisions, Briargate, Wolf Ranch, Cordera, Flying Horse, and Banning Lewis Ranch among them, run Architectural Control Committees that must approve a deck's design before PPRBD will issue the permit, an extra step a generic build spec skips.", cite: 'RealCostIQ, Colorado HOA costs; All Custom Deck service-area page' },
+  { b: 'Attached decks always need a permit', body: "A deck skips a permit only if it clears every one of: detached from the house, 200 square feet or smaller, no point more than 30 inches above grade, and not serving the main entry. Any deck attached to the house needs a permit regardless of size.", cite: 'PPRBD, Residential Deck Plan Review packet' },
+];
+
+const faqItems = [
+  { q: 'Do I need a permit to build a deck in Colorado Springs?', a: 'In most cases yes. PPRBD (Pikes Peak Regional Building Department) is the sole permitting authority for the city and El Paso County, and any deck attached to the home, or freestanding above a set height, requires a permit and inspection. See our permits page for the exact exemption rules and the step-by-step process.' },
+  { q: 'How much does it cost to build a deck in Colorado Springs?', a: "It depends heavily on material: real local pricing runs roughly $12,000 to $30,000-plus for a standard 300 square foot deck, with pressure-treated pine at the low end and premium composite at the high end. Our cost page breaks out the full per-material ranges with sources." },
+  { q: 'What should a 12x24 deck cost?', a: 'A 12x24 deck is about 288 square feet. Multiply the per-square-foot range for your chosen material, then add stairs, railing, footings, and the PPRBD permit fee. We work through a full itemized example on the cost page.' },
+  { q: 'What is the typical cost of replacing a deck in Colorado Springs?', a: 'Replacement can reuse sound footings and framing if they pass inspection, or require a full tear-off if the ledger, footings, or framing have failed. See our repair and replacement page for the warning signs that tip the decision one way or the other.' },
+  { q: 'What are the building codes for building a deck in Colorado Springs?', a: 'Decks follow the adopted IRC as enforced by PPRBD: footings below the 30-inch frost line, guard and stair requirements, correct ledger attachment, and Appendix K ignition-resistant materials in mapped WUI zones. Full detail on our permits and fire-resistant decks pages.' },
+];
+---
+<BaseLayout
+  title="Deck Builders in Colorado Springs, CO"
+  description="Custom decks, real cost ranges, and PPRBD permit know-how for Colorado Springs. Compare local deck builders who build for 6,035 ft and Colorado's climate."
+  extraServices={['Deck building cost estimate', 'New deck construction', 'Deck permits', 'Composite decking installation', 'Wood decking installation', 'Fire-resistant WUI deck building', 'Deck repair', 'Deck replacement']}
+>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">El Paso County &middot; Pikes Peak Region</p>
+        <h1>Deck Builders in Colorado Springs Building Custom Decks for 6,035 Feet</h1>
+        <p class="lede">This site connects Colorado Springs homeowners planning a custom deck with local builders who explain cost, PPRBD permits, and altitude and fire-code durability before you sign, not after the invoice.</p>
+        <a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      </div>
+      <HeroLeadForm />
+    </div>
+  </div>
+
+  <FactRail items={factRailItems} />
+
+  <section id="services">
+    <div class="wrap">
+      <p class="eyebrow">What we cover</p>
+      <h2>Deck services built for Colorado conditions</h2>
+      <p class="lead-out">Six pages, no filler: each one goes deep on one slice of the job, real Colorado Springs pricing, PPRBD permit rules, and the altitude and fire-code substance a generic deck site never mentions.</p>
+      <ul class="services">
+        {services.map((s) => (
+          <li><a href={s.href}><span class="svc-title">{s.title}</span><span class="svc-sub">{s.sub}</span></a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">Why Colorado Springs is different</p>
+      <h2>What 6,035 feet actually does to a deck</h2>
+      <p class="lead-out">Altitude, freeze-thaw, wildfire code, and a permitting authority that only exists here change what a deck needs to survive and what it takes to get one approved. These are the local facts that drive every recommendation on this site.</p>
+      <ul class="facts">
+        {factItems.map((f) => (
+          <li><b>{f.b}</b>{f.body}<cite>{f.cite}</cite></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Transparent pricing</p>
+      <h2>What a deck actually costs here</h2>
+      <p class="lead-out">Four material tiers, real per-square-foot ranges, and the lifespan each one delivers in Colorado's freeze-thaw and UV. Our cost page is the only Colorado Springs deck resource that publishes real sourced numbers instead of "call for a free estimate."</p>
+      <p><a class="btn btn-quiet" href="/deck-building-cost/">See the full cost breakdown</a></p>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <div class="codes">
+        <div class="codes-body">
+          <p class="eyebrow">Codes & compliance</p>
+          <h2>We build to the code that governs Colorado Springs.</h2>
+          <p>PPRBD is the sole permitting authority in the Pikes Peak region. Footings go below the 30-inch frost line, and Appendix K ignition-resistant materials apply in mapped WUI zones. Compliance is the baseline here, not an upsell.</p>
+          <p><a href="/new-deck-construction-and-permits/">See the permit process &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Questions homeowners ask</p>
+      <h2>Deck FAQ</h2>
+      <Faq items={faqItems} />
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">Get an estimate</p>
+      <h2>Get your free deck quote</h2>
+      <div class="plain">
+        <p>Call and get straight answers on cost, permits, and material, or send your project details and hear back the same business day.</p>
+        <p>{SITE.name} is a local information and referral resource. The estimate, permitting, and construction or repair work are handled by an independent, separately-owned local deck builder. Details in our <a href="/privacy/">Privacy &amp; Terms</a>.</p>
+      </div>
+      <p style="margin-top:1.25rem;"><a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a></p>
+    </div>
+  </section>
+</BaseLayout>

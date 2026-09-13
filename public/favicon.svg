@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Colorado Springs Deck Building">
+  <rect width="64" height="64" rx="10" fill="#1c1e20"/>
+  <path d="M8 40 L24 14 L34 30 L42 18 L56 40 Z" fill="#8d9096"/>
+  <path d="M24 14 L27 19 L21 19 Z" fill="#f4f2ec"/>
+  <rect x="6" y="42" width="52" height="5" rx="1" fill="#5b4436"/>
+  <rect x="6" y="49" width="52" height="5" rx="1" fill="#b65a4e"/>
+</svg>

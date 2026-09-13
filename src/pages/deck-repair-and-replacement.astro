@@ -1,0 +1,144 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../lib/site.js';
+
+const signs = [
+  { t: 'Wobbly railings', d: 'Loose or springy guards are a fall risk and often a sign of failed connections.' },
+  { t: 'Soft or rotting boards', d: 'Spongy spots, splits, or dark staining mean moisture has gotten in.' },
+  { t: 'Ledger pulling away', d: 'Any gap where the deck meets the house is a serious structural warning, the single most common failure point on older Colorado Springs decks.' },
+  { t: 'Rusted fasteners', d: 'Corroded hangers, screws, or bolts lose holding strength over time.' },
+  { t: 'Wobbly stairs or posts', d: 'Movement at the stairs or posts often points to a footing or framing problem.' },
+  { t: 'Faded, cracking boards', d: 'Widespread surface failure from years of UV and freeze-thaw exposure at this altitude.' },
+];
+
+const repairWhen = [
+  'The framing and footings are structurally sound',
+  'Damage is limited to boards, railing, or stairs',
+  'The deck already meets, or can easily meet, current PPRBD code',
+];
+const replaceWhen = [
+  'Footings, posts, or the ledger have failed',
+  'Rot or damage is widespread across the structure',
+  'The deck was built to outdated or non-compliant code',
+];
+
+const services = [
+  { t: 'Re-decking', d: 'New boards on sound framing for a fresh surface at a fraction of full replacement cost.' },
+  { t: 'Structural repair', d: 'Footings, posts, beams, ledger, and connectors brought back to strength.' },
+  { t: 'Railing & stairs', d: 'Code-height guards and solid stair runs rebuilt to PPRBD spec.' },
+  { t: 'Full replacement', d: 'Complete tear-off and rebuild to current code when repair is not enough.' },
+];
+
+const faqItems = [
+  { q: 'What is the typical cost of replacing a deck in Colorado Springs?', a: "Replacement can reuse footings and framing if they pass inspection, which lowers the cost versus a full tear-off. Homeowner-reported quotes here have run over $20,000 for a 12x15 foot deck, though older reports should be treated as dated, not current pricing; see our cost page for current sourced ranges." },
+  { q: 'What is the single most common deck failure here?', a: 'A missing or poorly installed ledger flashing is the single most common cause of deck failure found on older Colorado Springs decks: water gets into the ledger-to-siding seam and rots the connection from the inside, often invisibly until the deck is already unsafe.' },
+  { q: 'Can you just replace the boards and keep the frame?', a: 'If the framing, footings, and ledger are sound, re-decking is a great option. We inspect the footing depth and framing condition before recommending it, so you are not putting new boards on a failing frame.' },
+  { q: 'Do I need a permit for a deck repair?', a: 'Cosmetic board or railing swaps often do not, but structural repairs and replacements usually do. PPRBD is the authority, and the scope of the repair determines whether a permit applies.' },
+  { q: 'Is my old deck up to current code?', a: 'Many older decks are not, especially on ledger attachment, footing depth, and guard height. A repair or replacement is a real chance to bring an older deck up to the current PPRBD-enforced code rather than just patching what is visible.' },
+];
+---
+<BaseLayout
+  title="Deck Repair & Replacement in Colorado Springs"
+  description="Deck repair, replacement, and re-staining in Colorado Springs: common failure points, altitude re-stain cycles, and when repair should become a rebuild."
+  extraServices={['Deck repair', 'Deck replacement', 'Re-decking']}
+>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Home / Repair &amp; replacement</p>
+        <h1>Deck repair &amp; replacement</h1>
+        <p class="lede">Wobbly rails, soft boards, a ledger pulling off the house. The existing structure gets assessed first, then what is sound gets repaired and what is not gets replaced, so you never pay to rebuild a deck that did not need it.</p>
+      </div>
+      <HeroLeadForm />
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">When to call</p>
+      <h2>Signs your deck needs attention</h2>
+      <p class="lead-out">A wobbly railing or a soft board is easy to spot; a failing footing or a rotting ledger connection often is not. The six signs below cover both the obvious and the ones that matter most structurally.</p>
+      <ul class="card-grid cols-3">
+        {signs.map((s) => (
+          <li class="card"><h3>{s.t}</h3><p>{s.d}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk" id="repair-vs-replace">
+    <div class="wrap">
+      <p class="eyebrow">The honest call</p>
+      <h2>Repair, or replace?</h2>
+      <p class="lead-out">Repair makes sense when the framing and footings are sound and the damage is cosmetic; replacement is the smarter call once the structure itself has failed. The two named local failure modes below, ledger flashing and frost-shallow footings, are what usually tip the decision toward replacement.</p>
+      <div class="split-2">
+        <div class="panel panel-light">
+          <h3>Repair makes sense when</h3>
+          <ul>{repairWhen.map((r) => (<li>{r}</li>))}</ul>
+        </div>
+        <div class="panel panel-dark">
+          <h3>Replacement is smarter when</h3>
+          <ul>{replaceWhen.map((r) => (<li>{r}</li>))}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="local-failure-modes">
+    <div class="wrap">
+      <p class="eyebrow">What actually fails here</p>
+      <h2>The two named local failure modes</h2>
+      <p class="lead-out">Two specific, named defects account for most of the older-deck failures found in Colorado Springs: a ledger connection that lets water in, and a footing that was never dug deep enough for the local frost line. Both are usually invisible until the deck is already unsafe.</p>
+      <ul class="facts">
+        <li><b>Ledger flashing is the #1 failure point</b>A missing or poorly installed ledger flashing is the single most common cause of deck failure found on older Colorado Springs decks; water gets into the ledger-to-siding seam and rots the connection from the inside.<cite>The Colorado Handyman, "Deck Builders in Colorado Springs" (Jul 2026)</cite></li>
+        <li><b>Shallow footings heave and crack</b>A footing poured shallower than the 30-inch frost line heaves and cracks over a few winters, one of the two invisible corners a too-cheap local quote is usually cutting.<cite>The Colorado Handyman (Jul 2026)</cite></li>
+        <li><b>Wrong-grade lumber rots early</b>Substituting UC3 (above-ground) lumber for the required UC4A ground-contact rating in soil-contact framing is a common cost-cutting move that rots early, the other invisible corner behind a too-cheap quote.<cite>The Colorado Handyman (Jul 2026); AWPA use-category standard</cite></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">What we do</p>
+      <h2>Repair &amp; replacement services</h2>
+      <ul class="card-grid cols-4">
+        {services.map((s) => (
+          <li class="card"><h3>{s.t}</h3><p>{s.d}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="codes">
+        <div class="codes-body">
+          <p class="eyebrow">Brought up to current code</p>
+          <h2>A replacement is a chance to fix what the old code missed.</h2>
+          <p>Older decks often fail on ledger attachment, guard height, or footing depth. A replacement is built to the current IRC as PPRBD enforces it, with a permit pulled if the scope requires one.</p>
+          <p><a href="/new-deck-construction-and-permits/">Permits &amp; codes &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sunk" id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Repair questions</p>
+      <h2>Repair &amp; replacement FAQ</h2>
+      <Faq items={faqItems} />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Deck feeling unsafe?</p>
+      <h2>Get it looked at</h2>
+      <p class="lead-out">We assess before we quote. Same business day reply.</p>
+      <p><a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      <a class="btn btn-quiet" href="/contact/">Get a free quote</a></p>
+    </div>
+  </section>
+</BaseLayout>

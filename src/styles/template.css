@@ -1,0 +1,311 @@
+/* ============================================================================
+   NETWORK TEMPLATE, structure only. Shared by every LocalSiteLeads site.
+   Ported verbatim in structure from 08_Builds/design/template.css. Never edit
+   this file to make one site work; add a token to theme.css instead.
+   Mobile-first. Every colour and face comes from the site's theme.css.
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  line-height: 1.62;
+  color: var(--brand-bark);
+  background: var(--brand-ground);
+  padding-bottom: 72px;
+}
+
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  text-transform: var(--display-case);
+  line-height: 1.05;
+  margin: 0 0 .5em;
+  color: var(--brand-deep);
+}
+h1 { font-size: var(--step-h1); }
+h2 { font-size: var(--step-h2); }
+h3 { font-size: var(--step-h3); line-height: 1.2; }
+
+p { margin: 0 0 1.1em; }
+a { color: var(--brand-mid); }
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--brand-signal);
+  outline-offset: 2px;
+}
+
+.wrap { width: 100%; max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: var(--step-small);
+  color: var(--brand-mid);
+  margin: 0 0 .6rem;
+}
+
+/* --- Masthead ---------------------------------------------------------- */
+.masthead { background: var(--brand-deep); color: #fff; padding: .85rem 0; }
+.masthead .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.wordmark {
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+  font-size: 1.3rem; letter-spacing: .02em; color: #fff; text-decoration: none;
+  line-height: 1.35rem;
+}
+.wordmark span { display: block; font-size: .68rem; letter-spacing: .18em; color: var(--brand-signal); line-height: 1rem; }
+.masthead-call { display: none; }
+
+.brand-mark { display: flex; align-items: center; gap: .55rem; min-height: 2.15rem; }
+.brand-mark img { flex: 0 0 auto; width: 2.15rem; height: 2.15rem; }
+.foot .brand-mark img { width: 1.8rem; height: 1.8rem; }
+
+.nav { background: var(--brand-mid); }
+.nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0 1.25rem; margin: 0; padding: .6rem 1.25rem; max-width: 68rem; margin-inline: auto; }
+.nav a {
+  color: #fff; text-decoration: none;
+  font-family: var(--font-display); text-transform: uppercase;
+  font-weight: 700; font-size: .95rem; letter-spacing: .04em;
+  display: block; padding: .35rem 0;
+}
+.nav a:hover, .nav a[aria-current="page"] { color: var(--brand-signal); }
+
+/* --- Hero ---------------------------------------------------------------- */
+.hero { position: relative; overflow: hidden; isolation: isolate; background: var(--brand-deep); color: #F0EDE6; padding: 2.25rem 0 2.75rem; min-height: 33rem; }
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: rgba(var(--hero-scrim-rgb),.85);
+}
+.hero .wrap { position: relative; z-index: 2; }
+.hero h1 { color: #fff; margin-bottom: .55rem; }
+.hero .lede { font-size: 1.13rem; color: #CFD9D0; margin-bottom: 1.5rem; max-width: 34rem; }
+
+/* --- Cost caller --------------------------------------------------------- */
+.caller {
+  background: var(--surface);
+  border: 3px solid var(--brand-signal);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.15rem 1.25rem;
+}
+.caller h2 { font-size: 1.3rem; margin-bottom: .15rem; }
+.caller .caller-note { font-size: var(--step-small); color: #6A6157; margin: 0 0 .9rem; }
+.sizes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-bottom: .9rem; }
+.size {
+  border: var(--rule); background: var(--brand-ground);
+  border-radius: var(--radius); padding: .6rem .4rem; text-align: center;
+  cursor: pointer; font: inherit; color: inherit;
+}
+.size[aria-pressed="true"] { border-color: var(--brand-deep); background: var(--brand-deep); color: #fff; }
+.size .size-label { display: block; font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: .95rem; }
+.size .size-sub { display: block; font-size: .75rem; opacity: .75; }
+.readout {
+  border-top: var(--rule); padding-top: .85rem;
+  display: flex; align-items: baseline; justify-content: space-between; gap: .75rem;
+}
+.readout .figure { font-family: var(--font-display); font-weight: 800; font-size: 2.1rem; color: var(--brand-deep); line-height: 1; }
+.readout .figure-sub { font-size: var(--step-small); color: #6A6157; text-align: right; }
+
+.caller-standalone { max-width: 30rem; margin: 0 auto; }
+
+/* --- Hero lead form -------------------------------------------------------- */
+.hero-form {
+  background: var(--surface);
+  border: 3px solid var(--brand-signal);
+  border-radius: var(--radius);
+  padding: 1.15rem 1.15rem 1.25rem;
+}
+.hero-form h2 { font-size: 1.3rem; margin-bottom: .15rem; color: var(--brand-deep); }
+.hero-form-note { font-size: var(--step-small); color: #6A6157; margin: 0 0 .9rem; }
+.hero-form .btn { margin-top: .2rem; }
+.hero-form-alt { font-size: var(--step-small); color: #6A6157; text-align: center; margin: .75rem 0 0; }
+.hero-form-alt a { color: var(--brand-deep); font-weight: 700; }
+
+/* --- Service band ---------------------------------------------------------- */
+.service-band {
+  background: var(--brand-mid);
+  color: #F0EDE6;
+  padding: 1.6rem 0 1.85rem;
+  border-bottom: 3px solid var(--brand-signal);
+}
+.service-band h2 { color: #fff; font-size: 1.55rem; margin-bottom: .75rem; }
+.service-band-bullets { list-style: none; margin: 0 0 1.35rem; padding: 0; display: grid; gap: .55rem; }
+.service-band-bullets li {
+  display: flex; align-items: flex-start; gap: .55rem;
+  font-size: 1rem; line-height: 1.4; color: #E3E8E1;
+}
+.service-band-bullets li::before {
+  content: "\2713"; font-weight: 800; flex: 0 0 auto;
+  color: #B9C4BB;
+}
+.service-band-cta { display: flex; flex-direction: column; gap: .6rem; }
+.btn-band-secondary { background: #fff; color: var(--brand-deep); border-color: #fff; }
+.btn-band-secondary:hover { background: #F0EDE6; }
+
+@media (min-width: 720px) {
+  .service-band .wrap { display: grid; grid-template-columns: 1.4fr .6fr; gap: 2.5rem; align-items: center; }
+  .service-band-cta .btn { width: 100%; min-width: 0; }
+}
+
+/* --- Buttons. Orange means CALL and nothing else, anywhere on the site. -- */
+.btn {
+  display: block; width: 100%; text-align: center;
+  font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+  letter-spacing: .04em; font-size: 1.15rem;
+  padding: .85rem 1rem; border-radius: var(--radius);
+  text-decoration: none; border: 2px solid transparent; cursor: pointer;
+}
+.btn-call { background: var(--brand-signal); color: #fff; border-color: var(--brand-signal); }
+.btn-call small { display: block; font-size: .7rem; letter-spacing: .1em; opacity: .9; font-weight: 700; }
+.btn-quiet { background: transparent; color: var(--brand-deep); border-color: var(--brand-line); font-size: 1rem; margin-top: .6rem; }
+.hero .btn-quiet { color: #fff; border-color: rgba(255,255,255,.35); }
+
+/* --- Sections ---------------------------------------------------------- */
+section { padding: 2.25rem 0; }
+section.sunk { background: var(--surface-sunk); }
+.lead-out { font-size: 1.06rem; max-width: 40rem; }
+
+/* --- Service index ------------------------------------------------------- */
+.services { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.services a {
+  display: block; background: var(--surface); border: var(--rule);
+  border-left: 4px solid var(--brand-mid); border-radius: var(--radius);
+  padding: .9rem 1rem; text-decoration: none; color: var(--brand-bark);
+}
+.services a:hover { border-left-color: var(--brand-signal); }
+.services .svc-title { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: 1.12rem; color: var(--brand-deep); display: block; }
+.services .svc-sub { font-size: .93rem; color: #6A6157; }
+
+/* --- OPTIONAL IMAGE SLOTS ------------------------------------------------- */
+.media-band { margin: 0; background: var(--surface-sunk); }
+.media-band img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 16 / 9; object-fit: cover;
+}
+.media-band figcaption {
+  font-size: var(--step-small); color: #6A6157;
+  padding: .5rem 1.25rem; max-width: 68rem; margin-inline: auto;
+}
+.services a:has(.svc-thumb) { display: grid; grid-template-columns: 5.5rem 1fr; gap: .85rem; align-items: center; }
+.svc-thumb { display: block; }
+.svc-thumb img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--radius);
+}
+
+@media (min-width: 720px) {
+  .media-band img { aspect-ratio: 21 / 9; }
+  .services a:has(.svc-thumb) { grid-template-columns: 7rem 1fr; }
+}
+
+/* --- Local-fact block. This is where guardrail D1 lives. ---------------- */
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: .85rem; }
+.facts li { background: var(--surface); border: var(--rule); border-radius: var(--radius); padding: .9rem 1rem; }
+.facts b { display: block; font-family: var(--font-display); text-transform: uppercase; font-size: 1rem; color: var(--brand-deep); }
+.facts cite { display: block; font-size: .78rem; font-style: normal; color: #8A8072; margin-top: .35rem; }
+.facts cite a { color: #8A8072; }
+
+/* --- Process ------------------------------------------------------------ */
+.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.4rem 1fr; gap: .85rem; align-items: start; }
+.steps li::before {
+  content: counter(s, decimal-leading-zero);
+  font-family: var(--font-display); font-weight: 800; font-size: 1.5rem;
+  color: var(--brand-signal); line-height: 1;
+}
+.steps b { display: block; font-family: var(--font-display); text-transform: uppercase; color: var(--brand-deep); font-size: 1.05rem; }
+
+/* --- Honest-trust block. Guardrail D6 + acceptance criteria 4/12. -------- */
+.plain { border: 2px dashed var(--brand-line); border-radius: var(--radius); padding: 1rem 1.1rem; background: var(--surface); }
+.plain p:last-child { margin-bottom: 0; }
+
+/* --- FAQ ------------------------------------------------------------------ */
+.faq { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.faq-item { background: var(--surface); border: var(--rule); border-radius: var(--radius); padding: .9rem 1rem; }
+.faq-item h3 { font-size: 1rem; margin-bottom: .4rem; }
+.faq-item p { margin-bottom: 0; }
+
+/* --- OPTIONAL: PRICE-TIER TABLE -------------------------------------------- */
+.price-table { background: var(--surface); border: var(--rule); border-radius: var(--radius); padding: 1.15rem 1.15rem 1.35rem; }
+.price-table h2 { font-size: 1.3rem; margin-bottom: .3rem; }
+.price-note { font-size: var(--step-small); color: #6A6157; margin: 0 0 1rem; }
+.price-tiers { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; }
+.price-tier {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: .25rem .75rem; border: var(--rule); border-left: 4px solid var(--brand-mid);
+  border-radius: var(--radius); padding: .7rem .85rem; background: var(--brand-ground);
+}
+.tier-name { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: .98rem; color: var(--brand-deep); flex: 1 1 auto; }
+.tier-figure { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: var(--brand-deep); white-space: nowrap; }
+.tier-figure span { font-family: var(--font-body); font-weight: 400; text-transform: none; font-size: .72rem; color: #6A6157; letter-spacing: 0; }
+.tier-desc { flex: 1 0 100%; font-size: .85rem; color: #6A6157; }
+
+/* --- Comparison table ----------------------------------------------------- */
+.compare { width: 100%; border-collapse: collapse; background: var(--surface); border: var(--rule); border-radius: var(--radius); overflow: hidden; }
+.compare th, .compare td { text-align: left; padding: .65rem .8rem; border-bottom: var(--rule); font-size: .95rem; }
+.compare th { font-family: var(--font-display); text-transform: uppercase; letter-spacing: .03em; background: var(--surface-sunk); color: var(--brand-deep); font-size: .85rem; }
+.compare tr:last-child td { border-bottom: none; }
+
+/* --- Simple form (contact page, Netlify Forms) ---------------------------- */
+.field-row { display: grid; gap: 0 .75rem; grid-template-columns: 1fr 1fr; }
+.field-row .field { min-width: 0; }
+.field { margin-bottom: 1rem; }
+.field label { display: block; font-family: var(--font-display); text-transform: uppercase; font-size: .85rem; letter-spacing: .03em; color: var(--brand-deep); margin-bottom: .3rem; }
+.field input, .field textarea {
+  width: 100%; font: inherit; padding: .65rem .75rem; border: var(--rule); border-radius: var(--radius);
+  background: var(--surface); color: var(--brand-bark);
+}
+.field textarea { min-height: 7rem; resize: vertical; }
+.hp-field { position: absolute; left: -9999px; top: -9999px; }
+
+/* --- Sticky call bar ------------------------------------------------------- */
+.callbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  background: var(--brand-deep); padding: .55rem .75rem;
+  border-top: 3px solid var(--brand-signal);
+  display: flex; gap: .5rem;
+}
+.callbar .btn { font-size: 1.08rem; padding: .7rem .5rem; }
+.callbar .btn-quiet { margin-top: 0; color: #fff; border-color: rgba(255,255,255,.3); flex: 0 0 38%; font-size: .92rem; }
+.callbar .btn-call { flex: 1; }
+
+/* --- Footer ------------------------------------------------------------ */
+.foot { background: var(--brand-deep); color: #B9C4BB; padding: 2rem 0 2.5rem; font-size: .95rem; }
+.foot a { color: #fff; }
+.foot .foot-mark { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; color: #fff; font-size: 1.15rem; }
+
+/* --- Larger screens ------------------------------------------------------- */
+@media (min-width: 720px) {
+  :root { --step-h1: 3.4rem; --step-h2: 2.15rem; }
+  body { padding-bottom: 0; }
+  .callbar { display: none; }
+  .masthead-call {
+    display: inline-block; background: var(--brand-signal); color: #fff;
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    font-size: 1.25rem; padding: .5rem 1rem; border-radius: var(--radius);
+    text-decoration: none; letter-spacing: .02em;
+  }
+  .hero::after {
+    background: linear-gradient(100deg, rgba(var(--hero-scrim-rgb),.94) 0%, rgba(var(--hero-scrim-rgb),.86) 40%, rgba(var(--hero-scrim-rgb),.5) 75%, rgba(var(--hero-scrim-rgb),.32) 100%);
+  }
+  .hero .hero-form, .hero .caller { position: sticky; top: 1rem; align-self: start; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: 2.5rem; align-items: center; }
+  .hero.no-caller .wrap { display: block; }
+  .btn { display: inline-block; width: auto; min-width: 15rem; }
+  .btn-quiet { margin-top: 0; margin-left: .6rem; }
+  .services { grid-template-columns: 1fr 1fr; }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; gap: 1.4rem 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,20 @@
+---
+// "Colorado Springs at a glance" honest fact-rail, sits directly under the
+// Home hero. Each item is a real, sourced fact developed on the page it
+// belongs to (no-reuse counting, D1), not a fabricated stat. Structure
+// shared network-wide; this site's own visual treatment (quartz-vein column
+// rules) lives in theme.css.
+interface Item { k: string; v: string; }
+interface Props { items: Item[]; }
+const { items } = Astro.props as Props;
+---
+<aside class="factrail" aria-label="Colorado Springs at a glance">
+  <div class="factrail-inner">
+    {items.map((it) => (
+      <div class="factrail-item">
+        <span class="tick" aria-hidden="true"></span>
+        <div><span class="k">{it.k}</span><span class="v">{it.v}</span></div>
+      </div>
+    ))}
+  </div>
+</aside>

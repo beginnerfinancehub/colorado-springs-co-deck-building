@@ -1,0 +1,25 @@
+# Astro build output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.production
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build-input planning artifacts (spec + design source), not part of the
+# deployed site: matches sites #1-#3's convention of keeping the deployed
+# repo to site code only. Both stay on disk in this build folder.
+build-spec.md
+design-export/

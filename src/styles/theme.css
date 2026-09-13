@@ -1,0 +1,192 @@
+/* ============================================================================
+   THEME TOKENS, Colorado Springs CO deck building, direction "Timberline"
+   ----------------------------------------------------------------------------
+   Ported into the network's two-layer design system. THIS IS THE ONLY STYLING
+   FILE THAT CHANGES PER SITE. template.css holds all structure and never
+   varies per site; this site's theme is retuned to its trade and city and
+   inherits template.css untouched.
+
+   Direction rationale: two design sources, used together. The per-page
+   structure/copy/content spec comes from design-export/ (Claude Design's
+   canvas export: Home, Cost, Permits, Materials, WUI, Repair, About, Contact
+   plus SiteNav/SiteFooter/LeadForm partials). The color/type/visual direction
+   comes from the published Timberline artifact (Chair-picked 2026-09-13):
+   graphite base, granite-rose accent, Pikes Peak granite mineralogy (monzo
+   gray, mica bronze, timber brown). The tokens below are read directly off
+   that artifact's own CSS custom properties, not re-guessed; the "granite
+   mineralogy" secondary tones (monzo, mica, timber) go into this site's own
+   fact-rail/codes-band layer below, a genuinely site-specific structural
+   motif distinct from prior sites' strata bars (Springfield), earth bands
+   (Abilene), and reveal-lines (Omaha).
+   Typefaces: Barlow Condensed + Inter, the same pair BaseLayout.astro already
+   loads network-wide, so no new font-loading/CLS risk; Timberline's own
+   mixed-case, weight-600 headline register (not the network's default
+   uppercase 800) is honored via the --display-case/--display-weight tokens,
+   which is the one genuinely distinct typographic move this site makes
+   without touching template.css: an editorial register fitting a higher-
+   ticket trade ($12k-$39k+ jobs) rather than the industrial all-caps look
+   used on stump grinding, septic, and siding.
+   ========================================================================= */
+
+:root {
+  --brand-deep:   #1c1e20;   /* graphite: headers, footer, hero */
+  --brand-mid:    #4b4f54;   /* monzogranite gray: nav, links, secondary surfaces */
+  --brand-signal: #b65a4e;   /* granite-rose: CALL actions + the one accent hue */
+  --brand-ground: #f4f2ec;   /* frost (quartz/paper): page background */
+  --brand-bark:   #232220;   /* ink: near-black body text, never pure #000 */
+  --brand-line:   #ddd7c9;   /* hairline rules, card borders */
+
+  --surface:      #FFFFFF;
+  --surface-sunk: #ece8de;   /* frost-2 */
+
+  /* Mineral accent tones, used only in this site's own layout layer below,
+     never substituted for --brand-signal (orange/rose stays reserved). */
+  --monzo:  #8d9096;
+  --mica:   #9c7a46;
+  --timber: #5b4436;
+
+  /* Hero scrim colour (tokenised network-wide). Matches --brand-deep so a
+     photo-free hero (this site ships photo-free, imagery is C3b) reads as a
+     clean solid graphite panel, not a missing image. */
+  --hero-scrim-rgb: 28, 30, 32;
+
+  --font-display: "Barlow Condensed", "Oswald", "Arial Narrow", sans-serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --display-weight: 600;
+  --display-tracking: -0.01em;
+  --display-case: none;
+
+  --step-h1: 2.35rem;
+  --step-h2: 1.6rem;
+  --step-h3: 1.15rem;
+  --step-body: 1.0625rem;
+  --step-small: 0.875rem;
+
+  --radius: 8px;
+  --rule: 1px solid var(--brand-line);
+}
+
+/* ============================================================================
+   SITE-SPECIFIC LAYOUT LAYER, "Timberline" (Colorado Springs deck building only)
+   ----------------------------------------------------------------------------
+   Beyond the tokens above. These are modifier/utility classes applied in THIS
+   site's page markup; template.css stays layout-only and identical across the
+   network (two-layer design system + guardrail E3).
+   ========================================================================= */
+
+/* Diagonal graphite weave on the hero, replacing a photo (photo-free ship).
+   Same motif both design sources use (design-export's repeating-linear-
+   gradient bands, Timberline's .hero-grade), rebuilt here as a pure CSS
+   pseudo-element so no image file is needed. Sits below the scrim/content. */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 0;
+  background: repeating-linear-gradient(
+    118deg,
+    rgba(244, 242, 236, .05) 0px, rgba(244, 242, 236, .05) 3px,
+    transparent 3px, transparent 34px
+  );
+}
+.hero.hero-timber { background: var(--timber); }
+.hero.hero-timber::after { background: rgba(91, 68, 54, .82); }
+
+/* Fact-rail: the honest "Colorado Springs at a glance" strip under the hero.
+   Each item is a real, sourced fact already developed on the page it belongs
+   to (no-reuse counting, D1), not a fabricated stat. Column-and-rule layout
+   (quartz-vein motif), distinct from prior sites' diagonal tick bars. */
+.factrail { background: var(--surface-sunk); border-bottom: var(--rule); border-top: var(--rule); }
+.factrail-inner {
+  max-width: 68rem; margin-inline: auto; padding: 1.15rem 1.25rem;
+  display: grid; gap: 1rem;
+}
+.factrail-item { padding-left: .85rem; border-left: 3px solid var(--brand-signal); }
+.factrail-item .tick { display: none; }
+.factrail-item .k {
+  display: block; font-family: var(--font-display); font-weight: 700;
+  font-size: 1.35rem; line-height: 1.05; color: var(--brand-deep);
+  font-variant-numeric: tabular-nums;
+}
+.factrail-item .v { display: block; font-size: .85rem; color: #6b6a66; margin-top: .2rem; line-height: 1.35; }
+@media (min-width: 720px) {
+  .factrail-inner { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* Codes & compliance closer: a dark, PPRBD/WUI-named sign-off block that
+   reinforces the local-authority substance (permitting, frost depth, WUI). */
+.codes { background: var(--brand-deep); color: #ddd9d1; border-radius: var(--radius); overflow: hidden; }
+.codes .codes-body { padding: 1.4rem 1.5rem 1.6rem; }
+.codes .eyebrow { color: #d99a6b; }
+.codes h2 { color: #fff; font-size: 1.5rem; margin-bottom: .5rem; }
+.codes p { margin-bottom: .6rem; }
+.codes p:last-child { margin-bottom: 0; }
+.codes a { color: #fff; font-weight: 700; }
+
+/* Generic bordered card, used for requirement/checklist/warning-sign/material
+   grids across the service pages: one small reusable primitive instead of a
+   bespoke class per section. */
+.card-grid { display: grid; gap: .85rem; margin: 0; padding: 0; list-style: none; }
+.card { background: var(--surface); border: var(--rule); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+.card-accent { border-top: 3px solid var(--brand-signal); }
+.card h3, .card h4 { margin-bottom: .4rem; font-size: 1.05rem; }
+.card p { margin-bottom: 0; font-size: .93rem; color: #5a554c; }
+.card .life {
+  display: inline-block; font-family: var(--font-display); font-weight: 700;
+  font-size: .85rem; color: var(--brand-signal); margin-bottom: .35rem;
+}
+@media (min-width: 720px) {
+  .card-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .card-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .card-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Checklist, a checkmark list distinct from .services (which is for nav-style
+   linked cards) and .facts (which is for cited D1 facts). */
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: .6rem; }
+.checklist li {
+  display: flex; gap: .65rem; align-items: flex-start;
+  background: var(--surface); border: var(--rule); border-radius: var(--radius);
+  padding: .8rem 1rem; font-size: .96rem;
+}
+.checklist li::before { content: "\2713"; color: var(--brand-signal); font-weight: 800; flex: none; }
+@media (min-width: 720px) { .checklist.cols-2 { grid-template-columns: 1fr 1fr; } }
+
+/* Two-panel repair-or-replace comparison: one light card, one dark card. */
+.split-2 { display: grid; gap: 1rem; }
+@media (min-width: 720px) { .split-2 { grid-template-columns: 1fr 1fr; } }
+.panel { border-radius: var(--radius); padding: 1.3rem 1.4rem; }
+.panel-light { background: var(--surface); border: var(--rule); }
+.panel-dark { background: var(--brand-deep); color: #f0ede6; }
+.panel h3 { font-size: 1.15rem; margin-bottom: .7rem; }
+.panel-dark h3 { color: #fff; }
+.panel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.panel li { display: flex; gap: .55rem; align-items: flex-start; font-size: .95rem; line-height: 1.45; }
+.panel-light li::before { content: "\2713"; color: var(--brand-signal); font-weight: 800; }
+.panel-dark li::before { content: "\2192"; color: #d99a6b; font-weight: 800; }
+.panel-dark li { color: #d6d2c9; }
+
+/* Worked-example itemized quote card, dark, for the Cost page. */
+.quote-card { background: var(--brand-deep); color: #f0ede6; border-radius: var(--radius); padding: 1.4rem 1.5rem; }
+.quote-card .quote-label { font-family: var(--font-display); font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; color: #d99a6b; margin-bottom: 1rem; }
+.quote-line { display: flex; justify-content: space-between; gap: .75rem; border-bottom: 1px solid rgba(240,237,230,.14); padding: .6rem 0; font-size: .95rem; }
+.quote-line:first-of-type { padding-top: 0; }
+.quote-line.total { border-bottom: none; padding-top: 1rem; font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: #fff; }
+.quote-line.total span:last-child { color: #d99a6b; }
+
+/* Pergola / codes-adjacent Q&A callout, dark card used mid-page on Permits. */
+.qa-callout { background: var(--brand-deep); color: #f0ede6; border-radius: var(--radius); padding: 1.6rem 1.7rem; }
+.qa-callout .eyebrow { color: #d99a6b; }
+.qa-callout h2 { color: #fff; }
+.qa-callout p { color: #cfc9bd; }
+
+/* Honest-note callout (About page), a rose-accented variant of .plain. */
+.plain-accent { border: var(--rule); border-left: 3px solid var(--brand-signal); border-radius: var(--radius); background: var(--surface); padding: 1rem 1.1rem; }
+.plain-accent .eyebrow { margin-bottom: .5rem; }
+
+/* Service-area chip row (About + Contact). */
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.chips li {
+  font-family: var(--font-display); font-size: .85rem; letter-spacing: .02em;
+  color: var(--brand-bark); background: var(--surface-sunk); border: var(--rule);
+  padding: .4rem .75rem; border-radius: var(--radius);
+}

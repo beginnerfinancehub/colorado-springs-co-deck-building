@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import PriceTiers from '../components/PriceTiers.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../lib/site.js';
+
+const priceTiers = [
+  { name: 'Pressure-Treated Pine', price: '40-55', unit: 'sq ft', desc: 'Budget tier. A 300 sq ft deck runs about $12,000-$16,500 installed; local lifespan 10-15 yrs.' },
+  { name: 'Cedar', price: '50-70', unit: 'sq ft', desc: 'Natural wood look. A 300 sq ft deck runs about $15,000-$21,000 installed; local lifespan 12-18 yrs.' },
+  { name: 'Mid-Tier Composite (Trex, Fiberon)', price: '55-80', unit: 'sq ft', desc: 'Best long-term value. A 300 sq ft deck runs about $16,500-$24,000 installed; local lifespan 25-30 yrs.' },
+  { name: 'Premium Composite (TimberTech, AZEK)', price: '75-100+', unit: 'sq ft', desc: 'Maximum durability. A 300 sq ft deck runs about $22,500-$30,000+ installed; local lifespan 30-50 yrs.' },
+];
+
+const drivers = [
+  { t: 'Size & footprint', d: 'Square footage is the base multiplier; multi-level or wrap-around framing adds more per square foot than a simple rectangle.' },
+  { t: 'Height off grade', d: 'Elevated decks need taller posts, more footings, and code-required guardrails, all real added cost.' },
+  { t: 'Footings & frost depth', d: 'Footings dug below the 30-inch El Paso County frost line, in rocky Front Range soil, add labor a flatland build spec never budgets for.' },
+  { t: 'Railings & stairs', d: 'Linear feet of railing and each stair run are priced separately from the deck surface itself.' },
+  { t: 'Material tier', d: 'Pressure-treated pine to premium composite is the single biggest lever on total price, roughly 2 to 2.5x across the range.' },
+  { t: 'PPRBD permit scope', d: 'A residential deck permit typically runs $225-$500; larger or engineered decks are assessed on a regional fee formula.' },
+  { t: 'Permit review timeline', d: 'A simple deck can clear PPRBD’s 15-minute walk-through plan check the same day. Larger or elevated decks route to standard and engineering plan review instead, roughly 1-3 weeks, which can shift your build schedule and carrying costs (PPRBD packet; The Colorado Handyman, Jul 2026).' },
+];
+
+const faqItems = [
+  { q: 'How much does it cost to build a deck in Colorado Springs?', a: "A standard 300 square foot deck runs roughly $12,000 to $30,000-plus installed here, with material choice explaining almost all of the spread: pressure-treated pine at the low end, premium composite at the high end. See the table above for the full per-square-foot breakdown by material." },
+  { q: 'What should a 12x24 deck cost?', a: 'A 12x24 deck is about 288 square feet. Multiply the per-square-foot range for your chosen material, then add stairs, railing, footings, and the PPRBD permit fee. We work through a full itemized example below.' },
+  { q: 'What is the typical cost of replacing a deck in Colorado Springs?', a: 'Replacement can reuse footings and framing if they pass inspection, which lowers the cost versus a full tear-off. Homeowner-reported quotes here have run over $20,000 for a 12x15 foot deck and up to $39,500 for a full project, though that specific figure is from a 2021 thread and should be treated as dated, not current pricing.' },
+  { q: 'Are permit fees included in a deck quote?', a: 'They should be. A PPRBD residential deck permit typically runs $225 to $500, formally assessed on a regional modifier of .27 times $169.09 per square foot plus any electrical, mechanical, or plumbing permit fees, estimable on PPRBD’s own online Fee Calculator.' },
+  { q: 'Why does a wood deck sometimes cost more in the long run?', a: 'Wood decks carry roughly $500-$1,000 a year in realistic upkeep here (sealing, board swaps), which can put a pressure-treated pine deck near $40,000 over 20 years once one board or framing replacement is included, more than a composite deck installed at the higher price point up front.' },
+];
+---
+<BaseLayout
+  title="Deck Building Cost in Colorado Springs"
+  description="Real Colorado Springs price ranges for pressure-treated, cedar, and composite decks, plus PPRBD permit fees and the altitude factors that change your quote"
+  extraServices={['Deck building cost estimate']}
+>
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Home / Deck building cost</p>
+        <h1>Deck building cost in Colorado Springs</h1>
+        <p class="lede">Four material tiers, honest per-square-foot ranges, and the lifespan each one actually delivers in Front Range freeze-thaw and UV. Here is how a deck is priced here, and what moves the number.</p>
+      </div>
+      <HeroLeadForm />
+    </div>
+  </div>
+
+  <section id="by-material">
+    <div class="wrap">
+      <p class="eyebrow">Price tiers, sourced and dated</p>
+      <h2>Cost by material, per square foot</h2>
+      <p class="lead-out">A 300 sq ft Colorado Springs deck runs roughly $12,000 to $30,000-plus installed, and material choice explains almost all of that spread. The table below breaks out real, dated local pricing by material so you can see where your project likely lands before anyone quotes you.</p>
+      <PriceTiers
+        heading="Colorado Springs deck cost by material"
+        note="Installed cost, per square foot. Sourced from The Colorado Handyman (Jul 2026) and Homeyou's Colorado Springs composite-decking data (Jul 2026), cross-checked against each other. Estimates, not quotes; your site and finish level move the number."
+        tiers={priceTiers}
+      />
+      <div style="font-size:.85rem;color:#6A6157;margin-top:.75rem;">Composite pricing disagrees slightly between sources: a local contractor's own figures put mid-tier composite at $55-80/sq ft, while an aggregator (Homeyou) reports composite installs at roughly $30-35/sq ft on a $8,000-$20,000 total-job basis. We show both ranges rather than pick the number that looks cleaner than the data actually is; your finish level, framing, and site access decide where you land.</div>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">Line by line</p>
+      <h2>What drives your price</h2>
+      <p class="lead-out">Six factors move a Colorado Springs deck quote up or down: size, height, footing depth, railing and stairs, material tier, and PPRBD permit scope. Material tier and footing depth are the two a generic national deck estimate almost always gets wrong for this altitude.</p>
+      <ul class="facts">
+        {drivers.map((d) => (
+          <li><b>{d.t}</b>{d.d}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section id="worked-example">
+    <div class="wrap">
+      <p class="eyebrow">Worked example</p>
+      <h2>What should a 12x24 deck cost?</h2>
+      <p class="lead-out">A 12 by 24 foot deck is about 288 square feet. Multiply your chosen material's per-square-foot range, then add stairs, railing, footings, and the PPRBD permit fee. That is the honest way to reach a number, and it is exactly how a written quote should be itemized.</p>
+      <div class="split-2">
+        <div class="quote-card">
+          <div class="quote-label">288 sq ft &middot; mid-tier composite, ground level</div>
+          <div class="quote-line"><span>Decking (mid-tier composite, $55-80/sq ft)</span><span>$15,840-$23,040</span></div>
+          <div class="quote-line"><span>Framing & frost-depth footings</span><span>Included above</span></div>
+          <div class="quote-line"><span>Stairs & railing (priced separately)</span><span>Varies by run</span></div>
+          <div class="quote-line"><span>PPRBD residential deck permit</span><span>$225-$500</span></div>
+          <div class="quote-line total"><span>Itemized total, before stairs/railing</span><span>~$16,065-$23,540+</span></div>
+        </div>
+        <div class="plain">
+          <p>Composite lands at the higher end of the material range but carries the longest local lifespan (25-30 yrs) and the lowest realistic annual upkeep. A pressure-treated pine build of the same footprint would run closer to $11,520-$15,840 in decking alone, before its own added $500-$1,000/yr upkeep cost.</p>
+          <p>Permit fees and Appendix K compliance in WUI zones should be itemized in your written quote before you sign, never added to the final invoice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <div class="codes">
+        <div class="codes-body">
+          <p class="eyebrow">No surprise line items</p>
+          <h2>Permit fees and code work belong in the quote, not the invoice.</h2>
+          <p>PPRBD permit scope, footings below the 30-inch frost line, and WUI ignition-resistant material should all be itemized before you sign. Compliance is priced up front, never added later.</p>
+          <p><a href="/new-deck-construction-and-permits/">See the permit process &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Cost questions</p>
+      <h2>Deck cost FAQ</h2>
+      <Faq items={faqItems} />
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">Get an estimate</p>
+      <h2>Get an itemized quote, not a guess</h2>
+      <p class="lead-out">Same business day reply. No obligation.</p>
+      <p><a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      <a class="btn btn-quiet" href="/contact/">Get a free quote</a></p>
+    </div>
+  </section>
+</BaseLayout>

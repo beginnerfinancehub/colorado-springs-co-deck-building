@@ -1,0 +1,61 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, localBusinessSchema } from '../lib/site.js';
+import '../styles/theme.css';
+import '../styles/template.css';
+
+interface Props {
+  title: string;
+  description: string;
+  extraServices?: string[];
+}
+const { title, description, extraServices = [] } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, SITE.url).href;
+const schema = localBusinessSchema({ pageUrl: canonicalUrl, description, extraServices });
+// D8 (quality-bar Part 3, item 8): title tag <= 60 chars. Append the brand
+// name only when it still fits; otherwise the page's own title (kept
+// self-contained and location-bearing per page) is the whole tag.
+const fullTitle = `${title} | ${SITE.name}`;
+const titleTag = fullTitle.length <= 60 ? fullTitle : title;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${SITE.url}/og-image.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={`${SITE.url}/og-image.png`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Barlow Condensed + Inter, the proven network pair (font-loading/CLS
+         fixes already worked out on sites #1-#3): display=optional avoids
+         font-swap reflow. Weight 500/600 added alongside 700/800 so this
+         site's Timberline-direction mixed-case, weight-600 headline register
+         (theme.css --display-weight) renders in the real face on first
+         paint rather than falling back, matching sites #1-#3's own
+         "load exactly the weights theme.css uses" practice. -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=optional" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=optional" rel="stylesheet" />
+    <title>{titleTag}</title>
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

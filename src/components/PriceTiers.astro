@@ -1,0 +1,32 @@
+---
+// Shared, opt-in network component (first activated site #3, Omaha siding).
+// Every figure passed in must be a real, sourced estimate, disclosed as an
+// estimate, per 05_Content/quality-bar.md Part 1 Tier 1. This component never
+// invents a number; it only displays what it is given. Structural CSS:
+// template.css, "OPTIONAL: PRICE-TIER TABLE".
+interface Tier {
+  name: string;
+  price: string;
+  unit: string;
+  desc?: string;
+}
+interface Props {
+  heading?: string;
+  note: string;
+  tiers: Tier[];
+}
+const { heading = 'What it costs', note, tiers } = Astro.props;
+---
+<div class="price-table">
+  <h2>{heading}</h2>
+  <p class="price-note">{note}</p>
+  <ul class="price-tiers">
+    {tiers.map((t) => (
+      <li class="price-tier">
+        <span class="tier-name">{t.name}</span>
+        <span class="tier-figure">${t.price}<span> / {t.unit}</span></span>
+        {t.desc && <span class="tier-desc">{t.desc}</span>}
+      </li>
+    ))}
+  </ul>
+</div>

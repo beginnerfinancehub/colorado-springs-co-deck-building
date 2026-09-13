@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroLeadForm from '../components/HeroLeadForm.astro';
+import Faq from '../components/Faq.astro';
+import { SITE } from '../lib/site.js';
+
+const checklist = [
+  'Confirm your parcel’s WUI zone before design, using the City’s official Wildfire Risk Map',
+  'Specify Class A or Class B fire-rated decking that qualifies as WUI-compliant',
+  'Detail the deck underside and skirting for ember resistance',
+  'Coordinate vegetation-mitigation and defensible-space clearances around the structure',
+  'Route code questions to CSFD’s Construction Services Unit or Wildfire Mitigation Unit',
+  'Build to pass PPRBD inspection the first time',
+];
+
+const faqItems = [
+  { q: 'How do I know if my home is in a WUI zone?', a: "Check the City of Colorado Springs' official Wildfire Risk Map (gis.coloradosprings.gov Html5Viewer wildfire-mitigation viewer) for your specific address. We confirm your status as part of design, before any material is ordered." },
+  { q: 'What decking materials are allowed in a WUI zone?', a: 'Class A fire-rated PVC decking and Class B fire-rated composite decking both qualify as WUI-compliant in Colorado, per the City WUI page and the Ignition Resistant Construction Design Manual. That narrows, but does not eliminate, the material list.' },
+  { q: 'Does a WUI deck also affect landscaping?', a: "Often yes. WUI rules can trigger vegetation-mitigation and defensible-space requirements around a new deck in fire-prone areas, so siting and planting near the deck have to be planned before the build, not after." },
+  { q: 'Who do I call with WUI code questions?', a: "Wildfire-code questions route to Colorado Springs Fire Department's Construction Services Unit (719-385-5982, option 2) and the Wildfire Mitigation Unit (719-385-7342), separate from the standard PPRBD building-permit desk." },
+];
+---
+<BaseLayout
+  title="Fire-Resistant & WUI Deck Building, Colorado Springs"
+  description="Building a deck in a Colorado Springs WUI zone? Appendix K's ignition-resistant material rules, Class A/B decking, and what passes inspection."
+  extraServices={['Fire-resistant WUI deck building', 'Ignition-resistant decking installation']}
+>
+  <div class="hero hero-timber">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Our differentiator</p>
+        <h1>Fire-resistant decks for WUI lots</h1>
+        <p class="lede">If your home sits in the wildland-urban interface, your deck is part of your home's ignition risk. This page covers the Appendix K ignition-resistant rules that apply, so the deck meets code and gives an ember less to catch.</p>
+      </div>
+      <HeroLeadForm />
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">The basics</p>
+      <h2>What is a WUI zone, and why does it change your deck?</h2>
+      <p class="lead-out">Colorado Springs has adopted a Wildland-Urban Interface ignition-resistant construction code for mapped hazard areas, with the deck-specific rules in Appendix K under City Ordinance 26-18. A deck is a horizontal surface that collects embers and pine litter, which is why the material and the assembly, not just the look, have to be right.</p>
+      <ul class="facts">
+        <li><b>The code lives in Appendix K</b>Colorado Springs has adopted a WUI ignition-resistant construction code requiring wildfire-mitigation measures for new construction in mapped WUI areas; the deck provisions live in Appendix K, adopted via City Ordinance 26-18.<cite>City of Colorado Springs Fire Department, Wildfire Risk Reduction Requirements</cite></li>
+        <li><b>Class A or Class B decking qualifies</b>Class A fire-rated PVC decking and Class B fire-rated composite decking both qualify as WUI-compliant in Colorado.<cite>City WUI page; Ignition Resistant Construction Design Manual (2020)</cite></li>
+        <li><b>Check your address on the City's own map</b>A homeowner can check whether their specific address falls in a WUI hazard zone using the City's official Wildfire Risk Map.<cite>City of Colorado Springs, gis.coloradosprings.gov wildfire-mitigation viewer</cite></li>
+        <li><b>Landscaping is part of the rule too</b>WUI rules can also trigger vegetation-mitigation and defensible-space requirements around a new deck in fire-prone areas, so siting and planting near the deck have to be planned before the build.<cite>City WUI page; StoneCroft Construction, /decking</cite></li>
+        <li><b>Two departments handle WUI questions</b>Wildfire-code questions route to CSFD's Construction Services Unit (719-385-5982, option 2) and the Wildfire Mitigation Unit (719-385-7342), separate from the standard PPRBD building-permit desk.<cite>City of Colorado Springs Fire Department, WUI page</cite></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sunk">
+    <div class="wrap">
+      <p class="eyebrow">Our WUI build checklist</p>
+      <h2>How an ignition-resistant deck actually gets built</h2>
+      <p class="lead-out">Most deck builders will not talk about WUI status at all. Confirming your zone, specifying Class A/B materials, and detailing the underside for ember resistance are the concrete steps that turn a code requirement into an actual, inspectable build.</p>
+      <ul class="checklist cols-2">
+        {checklist.map((c) => (<li>{c}</li>))}
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="codes">
+        <div class="codes-body">
+          <p class="eyebrow">This is the brand's edge</p>
+          <h2>Most deck builders will not talk about WUI. We lead with it.</h2>
+          <p>We confirm your zone, specify Appendix K materials, and build the assembly to pass PPRBD inspection, so your deck is an asset in a fire event, not a liability.</p>
+          <p><a href="/new-deck-construction-and-permits/">Permits &amp; code process &rarr;</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sunk" id="faq">
+    <div class="wrap">
+      <p class="eyebrow">WUI questions</p>
+      <h2>Fire-resistant deck FAQ</h2>
+      <Faq items={faqItems} />
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">In a fire zone?</p>
+      <h2>Let's build it right</h2>
+      <p class="lead-out">We'll confirm your WUI status and the qualifying materials. Same business day reply.</p>
+      <p><a class="btn btn-call" href={SITE.phoneHref}>Call {SITE.phoneDisplay}<small>{SITE.hours}</small></a>
+      <a class="btn btn-quiet" href="/contact/">Get a free quote</a></p>
+    </div>
+  </section>
+</BaseLayout>
