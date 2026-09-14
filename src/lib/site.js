@@ -6,11 +6,9 @@ export const SITE = {
   name: 'Colorado Springs Deck Building',
   domain: 'coloradospringsdeckbuilding.com',
   url: 'https://coloradospringsdeckbuilding.com',
-  // Placeholder number per the build spec: FCC-reserved 555-01xx fictional
-  // range, swapped for the real provisioned Twilio number at C4 the same way
-  // sites #1-#3 did.
-  phoneDisplay: '(719) 555-0100',
-  phoneHref: 'tel:+17195550100',
+  // Real provisioned Twilio number, swapped in at C4 (2026-09-13).
+  phoneDisplay: '(719) 752-2254',
+  phoneHref: 'tel:+17197522254',
   hours: '7am to 6pm, Mon to Fri, Sat by appointment',
   areaServed: ['Colorado Springs', 'Monument', 'Falcon', 'Fountain', 'Manitou Springs', 'Black Forest', 'Woodland Park'],
   // No street address: this is a lead-generation site, not a physical
